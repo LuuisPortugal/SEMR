@@ -3,7 +3,6 @@ import { Modal, Text, TouchableOpacity, View, Alert, Image, TextInput, StyleShee
 
 import { LineChart, Grid, YAxis, XAxis, BarChart } from 'react-native-svg-charts'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import ImgToBase64 from 'react-native-image-base64';
 import ViewShot from "react-native-view-shot";
 import RNFS from 'react-native-fs';
 
@@ -145,7 +144,7 @@ export default class Inicio extends Component {
         .refs
         .ViewShot
         .capture()
-        .then(ViewShotURI => ImgToBase64.getBase64String(ViewShotURI))
+        .then(ViewShotURI => RNFS.readFile(ViewShotURI, 'base64'))
         .then(ViewShotBase64 => {
           var pathDir = RNFS.PicturesDirectoryPath + '/SEMR';
           var pathFile = pathDir + '/' + new Date().getTime() + '.jpg';
