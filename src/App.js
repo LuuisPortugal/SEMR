@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableOpacity, View, Alert, Image, TextInput, StyleSheet, StatusBar, ScrollView, ActivityIndicator, Keyboard } from 'react-native';
 
+import { LineChart, Grid, YAxis, XAxis, BarChart } from 'react-native-svg-charts'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import axios from 'axios';
@@ -9,7 +10,7 @@ import logo from './assets/logo.png';
 
 export default class Inicio extends Component {
   state = {
-    shouldSelectDevice: true,
+    shouldSelectDevice: false,
     codeDevice: "",
     busy: false,
     feeds: {}
@@ -93,7 +94,45 @@ export default class Inicio extends Component {
       });
   }
 
-  renderData = () => console.log(this.state.feeds);
+  renderData = () => {
+    return _.map(this.state.feeds, (feeds, key) => {
+      if (!_.isEmpty(feeds)) {
+        let data = _.map(feeds, feed => Number.parseInt(feed.value));
+
+        return <View key={key}>
+          <Text style={styles.GraphicsText}>
+            {_.capitalize(key)}
+          </Text>
+          <View style={{ height: 200, flexDirection: 'row' }}>
+            <YAxis
+              data={data}
+              contentInset={{
+                top: 20,
+                bottom: 20
+              }}
+              svg={{
+                fill: 'grey',
+                fontSize: 10,
+              }}
+              numberOfTicks={10}
+              formatLabel={value => value}
+            />
+            <LineChart
+              data={data}
+              style={{ flex: 1, marginLeft: 16 }}
+              svg={{ stroke: 'rgb(134, 65, 244)' }}
+              contentInset={{
+                top: 20,
+                bottom: 20
+              }}
+            >
+              <Grid />
+            </LineChart>
+          </View>
+        </View>;
+      }
+    });
+  };
 
   onPressActionButtonItemRefresh = () => this.loadData();
 
@@ -164,7 +203,7 @@ export default class Inicio extends Component {
                   </TouchableOpacity>
                 </View>
                 <View style={styles.AppSectionBody}>
-
+                  {this.renderData()}
                 </View>
               </ScrollView>
             </View>
@@ -192,7 +231,8 @@ const styles = StyleSheet.create({
   AppSectionAction: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginVertical: 10
   },
   AppButtonActionRefresh: {
     borderRadius: 100,
@@ -212,14 +252,24 @@ const styles = StyleSheet.create({
   },
   AppButtonActionChangeDevice: {
     borderRadius: 100,
-    backgroundColor: "#FFCE80",
+    backgroundColor: "#FF9C80",
     margin: 10,
     paddingHorizontal: 14,
     paddingVertical: 12,
     elevation: 10
   },
   AppSectionBody: {
-
+    backgroundColor: "#FFFFFF",
+    padding: 15,
+    elevation: 5,
+    borderRadius: 20,
+    marginBottom: 30
+  },
+  GraphicsText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: "#000000",
+    marginBottom: -12
   },
   AppTitle: {
     width: 280,
