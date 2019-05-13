@@ -7,11 +7,17 @@
     "test": "jest"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
     "react": "16.8.3",
     "react-native": "0.59.4",
+    "react-native-bluetooth-serial-next": "^1.2.3",
     "react-native-fs": "^2.13.3",
+    "react-native-geocoder": "^0.5.0",
     "react-native-gesture-handler": "^1.1.0",
-    "react-navigation": "^3.8.1"
+    "react-native-svg": "^9.4.0",
+    "react-native-svg-charts": "^5.2.0",
+    "react-navigation": "^3.8.1",
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

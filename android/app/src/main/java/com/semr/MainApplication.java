@@ -3,8 +3,11 @@ package com.semr;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.nuttawutmalee.RCTBluetoothSerial.RCTBluetoothSerialPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.rnfs.RNFSPackage;
+import com.horcrux.svg.SvgPackage;
+import com.devfd.RNGeocoder.RNGeocoderPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -25,8 +28,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RCTBluetoothSerialPackage(),
             new RNGestureHandlerPackage(),
-            new RNFSPackage()
+            new RNGeocoderPackage(),
+            new RNFSPackage(),
+            new SvgPackage()
       );
     }
 
