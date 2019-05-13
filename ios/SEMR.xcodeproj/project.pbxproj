@@ -43,6 +43,9 @@
 		1336759FF17F4DD28A16F99E /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1047BB40B5495B8AB113A7 /* libRNGestureHandler.a */; };
 		E94154DE2B5C4F8AAAB6F6D9 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAE642652E64452908885FA /* libRNGestureHandler-tvOS.a */; };
 		E72942E4BD4847AD855E573C /* libRCTBluetoothSerial.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2165750518014FE495BF4F6F /* libRCTBluetoothSerial.a */; };
+		88CF11D99FC940E98D9FE144 /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 935F8CBDAC6D490EB3224BEB /* libRNGeocoder.a */; };
+		C3B997D750A14E169CC01F81 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D357B7C6C29E4087AA1D8C8F /* libRNSVG.a */; };
+		73B787BE863E4DED9ADF02B6 /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DAE33CB6224530B03D3269 /* libRNSVG-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -357,6 +360,11 @@
 		FDAE642652E64452908885FA /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; name = "libRNGestureHandler-tvOS.a"; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		1EF91971BB904F869352BE5F /* RCTBluetoothSerial.xcodeproj */ = {isa = PBXFileReference; name = "RCTBluetoothSerial.xcodeproj"; path = "../node_modules/react-native-bluetooth-serial-next/ios/RCTBluetoothSerial.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		2165750518014FE495BF4F6F /* libRCTBluetoothSerial.a */ = {isa = PBXFileReference; name = "libRCTBluetoothSerial.a"; path = "libRCTBluetoothSerial.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		14C59A3C2D1F4933A0C742C0 /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; name = "RNGeocoder.xcodeproj"; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		935F8CBDAC6D490EB3224BEB /* libRNGeocoder.a */ = {isa = PBXFileReference; name = "libRNGeocoder.a"; path = "libRNGeocoder.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		525A09BC26114A829025D07F /* RNSVG.xcodeproj */ = {isa = PBXFileReference; name = "RNSVG.xcodeproj"; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D357B7C6C29E4087AA1D8C8F /* libRNSVG.a */ = {isa = PBXFileReference; name = "libRNSVG.a"; path = "libRNSVG.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		04DAE33CB6224530B03D3269 /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; name = "libRNSVG-tvOS.a"; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,6 +396,8 @@
 				49F373F330194355BFFFD2E6 /* libRNFS.a in Frameworks */,
 				1336759FF17F4DD28A16F99E /* libRNGestureHandler.a in Frameworks */,
 				E72942E4BD4847AD855E573C /* libRCTBluetoothSerial.a in Frameworks */,
+				88CF11D99FC940E98D9FE144 /* libRNGeocoder.a in Frameworks */,
+				C3B997D750A14E169CC01F81 /* libRNSVG.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +415,7 @@
 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
 				E94154DE2B5C4F8AAAB6F6D9 /* libRNGestureHandler-tvOS.a in Frameworks */,
+				73B787BE863E4DED9ADF02B6 /* libRNSVG-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +592,8 @@
 				BE5FD109EA24449FA5E0D681 /* RNFS.xcodeproj */,
 				B230669FFA9648418D1997E4 /* RNGestureHandler.xcodeproj */,
 				1EF91971BB904F869352BE5F /* RCTBluetoothSerial.xcodeproj */,
+				14C59A3C2D1F4933A0C742C0 /* RNGeocoder.xcodeproj */,
+				525A09BC26114A829025D07F /* RNSVG.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1212,12 +1225,17 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-bluetooth-serial-next\ios\RCTBluetoothSerial",
+					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 				);
 			};
 			name = Debug;
@@ -1243,12 +1261,17 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-bluetooth-serial-next\ios\RCTBluetoothSerial",
+					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 				);
 			};
 			name = Release;
@@ -1274,6 +1297,8 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-bluetooth-serial-next\ios\RCTBluetoothSerial",
+					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 				);
 			};
 			name = Debug;
@@ -1298,6 +1323,8 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-bluetooth-serial-next\ios\RCTBluetoothSerial",
+					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 				);
 			};
 			name = Release;
@@ -1331,12 +1358,17 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-bluetooth-serial-next\ios\RCTBluetoothSerial",
+					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 				);
 			};
 			name = Debug;
@@ -1370,12 +1402,17 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-bluetooth-serial-next\ios\RCTBluetoothSerial",
+					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 				);
 			};
 			name = Release;
@@ -1408,12 +1445,17 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-bluetooth-serial-next\ios\RCTBluetoothSerial",
+					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 				);
 			};
 			name = Debug;
@@ -1446,12 +1488,17 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-bluetooth-serial-next\ios\RCTBluetoothSerial",
+					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 				);
 			};
 			name = Release;
