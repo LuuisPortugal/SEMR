@@ -6,11 +6,11 @@ import com.facebook.react.ReactApplication;
 import fr.snapp.imagebase64.RNImgToBase64Package;
 import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.nuttawutmalee.RCTBluetoothSerial.RCTBluetoothSerialPackage;
+
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.rnfs.RNFSPackage;
 import com.horcrux.svg.SvgPackage;
-import com.devfd.RNGeocoder.RNGeocoderPackage;
+
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -34,9 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNImgToBase64Package(),
             new RNViewShotPackage(),
             new VectorIconsPackage(),
-            new RCTBluetoothSerialPackage(),
             new RNGestureHandlerPackage(),
-            new RNGeocoderPackage(),
             new RNFSPackage(),
             new SvgPackage()
       );
