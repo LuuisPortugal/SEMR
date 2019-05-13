@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableOpacity, View, Alert, Image, TextInput, StyleSheet, StatusBar, ScrollView, ActivityIndicator } from 'react-native';
+import { Modal, Text, TouchableOpacity, View, Alert, Image, TextInput, StyleSheet, StatusBar, ScrollView, ActivityIndicator, Keyboard } from 'react-native';
 
-import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import axios from 'axios';
+import _ from 'lodash';
 import logo from './assets/logo.png';
 
 export default class Inicio extends Component {
   state = {
-    shouldSelectDevice: false,
+    shouldSelectDevice: true,
     codeDevice: "",
-    busy: false
+    busy: false,
+    feeds: {}
   }
 
-  client = () => axios.create({
+  client = axios.create({
     baseURL: 'https://io.adafruit.com/api/v2/SEMR/feeds/',
     headers: {
       'X-AIO-Key': 'aa603d19ed114f1881048837c5ced9c8'
@@ -24,13 +27,11 @@ export default class Inicio extends Component {
     Alert.alert(title, typeof message === 'string' ? message : message.error || "unknown error - contact the SE administrator");
   }
 
-  loadData = () => {
-    this.setState({ busy: true });
-    setTimeout(() => this.setState({ busy: false }), 2000);
-  }
-
   onPressAccessButton = () => {
     let { codeDevice } = this.state;
+
+    Keyboard.dismiss();
+
     if (!codeDevice) {
       this.alert("Warning", "type a code - you need type a code for load the data");
       return;
@@ -38,12 +39,12 @@ export default class Inicio extends Component {
 
     this.setState({ busy: true });
     this
-      .client()
+      .client
       .get('device')
       .then(({ data: { last_value } }) => {
         if (last_value.toUpperCase() === codeDevice.toUpperCase()) {
           this.setState({ shouldSelectDevice: false, busy: false });
-          //this.loadData();
+          this.loadData();
         } else {
           throw { error: "not found - contact the SE operator" };
         }
@@ -57,6 +58,48 @@ export default class Inicio extends Component {
   onChangeTextCodeDevice = codeDevice => {
     this.setState({ codeDevice });
   }
+
+  loadData = () => {
+    this.setState({ busy: true });
+    Promise
+      .all(
+        [
+          this.client.get(`acx/data`),
+          this.client.get(`acy/data`),
+          this.client.get(`acz/data`),
+          this.client.get(`grx/data`),
+          this.client.get(`gry/data`),
+          this.client.get(`grz/data`),
+          this.client.get(`ky38/data`)
+        ]
+      )
+      .then(([acx, acy, acz, grx, gry, grz, ky38]) => {
+        this.setState({
+          busy: false,
+          feeds: {
+            acx: acx.data,
+            acy: acy.data,
+            acz: acz.data,
+            grx: grx.data,
+            gry: gry.data,
+            grz: grz.data,
+            ky38: ky38.data
+          }
+        });
+      })
+      .catch(error => {
+        this.alert("Error", error);
+        this.setState({ busy: false });
+      });
+  }
+
+  renderData = () => console.log(this.state.feeds);
+
+  onPressActionButtonItemRefresh = () => this.loadData();
+
+  onPressActionButtonItemSave = () => alert("onPressActionButtonItemSave = ()!");
+
+  onPressActionButtonItemChangeDevice = () => this.setState({ shouldSelectDevice: true });
 
   render() {
     let { shouldSelectDevice, busy } = this.state;
@@ -109,11 +152,21 @@ export default class Inicio extends Component {
                   <Image source={logo} />
                   <Text style={styles.AppTitle}>SEMR - Sistema Embarcado de Medição de Ruidos</Text>
                 </View>
+                <View style={styles.AppSectionAction}>
+                  <TouchableOpacity style={styles.AppButtonActionRefresh} onPress={this.onPressActionButtonItemRefresh}>
+                    <Icon name="refresh" style={styles.ActionButtonIcon} />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.AppButtonActionSave} onPress={this.onPressActionButtonItemSave}>
+                    <Icon name="save" style={styles.ActionButtonIcon} />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.AppButtonActionChangeDevice} onPress={this.onPressActionButtonItemChangeDevice}>
+                    <Icon name="edit" style={styles.ActionButtonIcon} />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.AppSectionBody}>
+
+                </View>
               </ScrollView>
-              <ActionButton
-                buttonColor="rgba(231,76,60,1)"
-                onPress={() => { console.log("hi") }}
-              />
             </View>
         }
       </View>
@@ -124,7 +177,9 @@ export default class Inicio extends Component {
 const styles = StyleSheet.create({
   View: {
     flex: 1,
-    backgroundColor: '#0080FF'
+    backgroundColor: '#0080FF',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   App: {
     padding: 15
@@ -134,6 +189,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start'
   },
+  AppSectionAction: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  AppButtonActionRefresh: {
+    borderRadius: 100,
+    backgroundColor: "#80C0FF",
+    margin: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    elevation: 10
+  },
+  AppButtonActionSave: {
+    borderRadius: 100,
+    backgroundColor: "#D3A2FF",
+    margin: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    elevation: 10
+  },
+  AppButtonActionChangeDevice: {
+    borderRadius: 100,
+    backgroundColor: "#FFCE80",
+    margin: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    elevation: 10
+  },
+  AppSectionBody: {
+
+  },
   AppTitle: {
     width: 280,
     fontSize: 22,
@@ -141,6 +228,11 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     fontWeight: '300',
     color: '#FFFFFF'
+  },
+  ActionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
   },
   ModalSectionHeader: {
     flex: 2,

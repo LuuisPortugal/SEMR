@@ -93,6 +93,7 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -138,6 +139,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-vector-icons')
     implementation project(':react-native-svg')
     implementation project(':react-native-geocoder')
     implementation project(':react-native-bluetooth-serial-next')
