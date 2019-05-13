@@ -13,7 +13,7 @@ import logo from './assets/logo.png';
 
 export default class Inicio extends Component {
   state = {
-    shouldSelectDevice: false,
+    shouldSelectDevice: true,
     codeDevice: "",
     busy: false,
     feeds: {}
