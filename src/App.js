@@ -3,6 +3,9 @@ import { Modal, Text, TouchableOpacity, View, Alert, Image, TextInput, StyleShee
 
 import { LineChart, Grid, YAxis, XAxis, BarChart } from 'react-native-svg-charts'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import ImgToBase64 from 'react-native-image-base64';
+import ViewShot from "react-native-view-shot";
+import RNFS from 'react-native-fs';
 
 import axios from 'axios';
 import _ from 'lodash';
@@ -136,7 +139,25 @@ export default class Inicio extends Component {
 
   onPressActionButtonItemRefresh = () => this.loadData();
 
-  onPressActionButtonItemSave = () => alert("onPressActionButtonItemSave = ()!");
+  onPressActionButtonItemSave = () => {
+    setTimeout(() => {
+      this
+        .refs
+        .ViewShot
+        .capture()
+        .then(ViewShotURI => ImgToBase64.getBase64String(ViewShotURI))
+        .then(ViewShotBase64 => {
+          var pathDir = RNFS.PicturesDirectoryPath + '/SEMR';
+          var pathFile = pathDir + '/' + new Date().getTime() + '.jpg';
+
+          return RNFS
+            .mkdir(pathDir)
+            .then(() => RNFS.writeFile(pathFile, ViewShotBase64, 'base64'))
+            .then(() => this.alert("Success", "Report saved at " + pathFile));
+        })
+        .catch(error => this.alert("Error", error));
+    }, 600);
+  };
 
   onPressActionButtonItemChangeDevice = () => this.setState({ shouldSelectDevice: true });
 
@@ -150,7 +171,7 @@ export default class Inicio extends Component {
           visible={shouldSelectDevice}>
           <View style={styles.View}>
             <View style={styles.ModalSectionHeader}>
-              <Image source={logo} />
+              <Image source={logo} style={styles.Logo} />
               <Text style={styles.ModalTitle}>SEMR - Sistema Embarcado de Medição de Ruidos</Text>
             </View>
             <View style={styles.ModalSectionForm}>
@@ -185,26 +206,29 @@ export default class Inicio extends Component {
             <View style={styles.View}>
               <ActivityIndicator size="small" color="#FFFFFF" />
             </View> :
+
             <View style={styles.View}>
               <ScrollView style={styles.App}>
-                <View style={styles.AppSectionHeader}>
-                  <Image source={logo} />
-                  <Text style={styles.AppTitle}>SEMR - Sistema Embarcado de Medição de Ruidos</Text>
-                </View>
-                <View style={styles.AppSectionAction}>
-                  <TouchableOpacity style={styles.AppButtonActionRefresh} onPress={this.onPressActionButtonItemRefresh}>
-                    <Icon name="refresh" style={styles.ActionButtonIcon} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.AppButtonActionSave} onPress={this.onPressActionButtonItemSave}>
-                    <Icon name="save" style={styles.ActionButtonIcon} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.AppButtonActionChangeDevice} onPress={this.onPressActionButtonItemChangeDevice}>
-                    <Icon name="edit" style={styles.ActionButtonIcon} />
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.AppSectionBody}>
-                  {this.renderData()}
-                </View>
+                <ViewShot ref="ViewShot" options={{ format: "jpg", quality: 1 }} style={{ backgoundColor: '#0080FF' }}>
+                  <View style={styles.AppSectionHeader}>
+                    <Image source={logo} style={styles.Logo} />
+                    <Text style={styles.AppTitle}>SEMR - Sistema Embarcado de Medição de Ruidos</Text>
+                  </View>
+                  <View style={styles.AppSectionAction}>
+                    <TouchableOpacity style={styles.AppButtonActionRefresh} onPress={this.onPressActionButtonItemRefresh}>
+                      <Icon name="refresh" style={styles.ActionButtonIcon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.AppButtonActionSave} onPress={this.onPressActionButtonItemSave}>
+                      <Icon name="save" style={styles.ActionButtonIcon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.AppButtonActionChangeDevice} onPress={this.onPressActionButtonItemChangeDevice}>
+                      <Icon name="edit" style={styles.ActionButtonIcon} />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.AppSectionBody}>
+                    {this.renderData()}
+                  </View>
+                </ViewShot>
               </ScrollView>
             </View>
         }
@@ -220,19 +244,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  Logo: {
+  },
   App: {
-    padding: 15
   },
   AppSectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    paddingTop: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+    backgroundColor: '#0080FF'
   },
   AppSectionAction: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 10
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    backgroundColor: '#0080FF'
   },
   AppButtonActionRefresh: {
     borderRadius: 100,
@@ -261,6 +292,7 @@ const styles = StyleSheet.create({
   AppSectionBody: {
     backgroundColor: "#FFFFFF",
     padding: 15,
+    marginHorizontal: 15,
     elevation: 5,
     borderRadius: 20,
     marginBottom: 30
